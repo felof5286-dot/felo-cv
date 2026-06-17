@@ -250,8 +250,8 @@ main{padding-top:96px}
     .hero__img {
         margin-top: -60%;
         filter: saturate(1.25) contrast(1.2);
-        transform: scale(1); /* نرجع الصورة لحجمها الطبيعي عشان ما تقصش */
-        height: 70vh; /* الصورة تاخد نص طول الشاشة بس على الموبايل */
+        transform: scale(1); /* ظ†ط±ط¬ط¹ ط§ظ„طµظˆط±ط© ظ„ط­ط¬ظ…ظ‡ط§ ط§ظ„ط·ط¨ظٹط¹ظٹ ط¹ط´ط§ظ† ظ…ط§ طھظ‚طµط´ */
+        height: 70vh; /* ط§ظ„طµظˆط±ط© طھط§ط®ط¯ ظ†طµ ط·ظˆظ„ ط§ظ„ط´ط§ط´ط© ط¨ط³ ط¹ظ„ظ‰ ط§ظ„ظ…ظˆط¨ط§ظٹظ„ */
     }
     
 }
@@ -401,6 +401,78 @@ main{padding-top:96px}
 }
 .skill-badge:hover{transform: translateY(-2px); border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.08)}
 
+/* CERTIFICATIONS */
+.certifications{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+}
+
+.cert-card{
+  border-radius:22px;
+  background: rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+  overflow:hidden;
+  box-shadow: 0 18px 60px rgba(0,0,0,.18);
+}
+
+.cert-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(245,158,11,.35);
+  background: rgba(245,158,11,.07);
+}
+
+.cert-card__media{
+  background: rgba(0,0,0,.18);
+}
+
+.cert-card__media img{
+  width:100%;
+  height:380px;
+  object-fit:contain;
+  background: rgba(0,0,0,.10);
+}
+
+.cert-card__body{
+  padding:16px 16px 18px;
+}
+
+.cert-card__title{
+  margin:0;
+  font-size:16px;
+  font-weight:950;
+}
+
+.cert-card__meta{
+  margin:8px 0 0;
+  color:var(--muted-2);
+  font-weight:750;
+  font-size:13px;
+}
+
+.cert-card__desc{
+  margin:10px 0 12px;
+  color:var(--muted);
+  font-weight:650;
+  font-size:13px;
+}
+
+.cert-card__download{
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:8px;
+}
+
+@media (max-width: 980px){
+  .certifications{grid-template-columns: 1fr;}
+  .cert-card__media img{height:320px;}
+}
 /* PROJECTS */
 .projects{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
 .project-card{
@@ -586,39 +658,39 @@ main{padding-top:96px}
 
 
   @media print {
-    /* 1. إجبار المتصفح على إظهار الألوان */
+    /* 1. ط¥ط¬ط¨ط§ط± ط§ظ„ظ…طھطµظپط­ ط¹ظ„ظ‰ ط¥ط¸ظ‡ط§ط± ط§ظ„ط£ظ„ظˆط§ظ† */
     html, body {
         background-color: #121212 !important;
         color: #ffffff !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        height: auto !important; /* إلغاء أي ارتفاع كامل عشان كروم */
+        height: auto !important; /* ط¥ظ„ط؛ط§ط، ط£ظٹ ط§ط±طھظپط§ط¹ ظƒط§ظ…ظ„ ط¹ط´ط§ظ† ظƒط±ظˆظ… */
     }
 
-    /* 2. تحويل العناصر لـ Block عشان كروم يحسب الـ Page Break صح */
+    /* 2. طھط­ظˆظٹظ„ ط§ظ„ط¹ظ†ط§طµط± ظ„ظ€ Block ط¹ط´ط§ظ† ظƒط±ظˆظ… ظٹط­ط³ط¨ ط§ظ„ظ€ Page Break طµط­ */
     main, section, .hero-section, .about-section {
         display: block !important;
         height: auto !important;
         position: relative !important;
     }
 
-    /* 3. منع انقسام السيكشن أو الكروت في نص الصفحة (مهمة جداً لكروم) */
+    /* 3. ظ…ظ†ط¹ ط§ظ†ظ‚ط³ط§ظ… ط§ظ„ط³ظٹظƒط´ظ† ط£ظˆ ط§ظ„ظƒط±ظˆطھ ظپظٹ ظ†طµ ط§ظ„طµظپط­ط© (ظ…ظ‡ظ…ط© ط¬ط¯ط§ظ‹ ظ„ظƒط±ظˆظ…) */
     section, 
     .hero-section, 
     .about-section, 
     .info-card, 
     .stats-card {
-        page-break-inside: avoid !important; /* للمتصفحات القديمة */
-        break-inside: avoid !important;      /* لكروم الحديث */
+        page-break-inside: avoid !important; /* ظ„ظ„ظ…طھطµظپط­ط§طھ ط§ظ„ظ‚ط¯ظٹظ…ط© */
+        break-inside: avoid !important;      /* ظ„ظƒط±ظˆظ… ط§ظ„ط­ط¯ظٹط« */
     }
 
-    /* 4. إجبار كل سيكشن يبدأ في صفحة جديدة نظيفة */
+    /* 4. ط¥ط¬ط¨ط§ط± ظƒظ„ ط³ظٹظƒط´ظ† ظٹط¨ط¯ط£ ظپظٹ طµظپط­ط© ط¬ط¯ظٹط¯ط© ظ†ط¸ظٹظپط© */
     section {
-        page-break-before: always !important; /* بيخلي كل سيكشن يبدأ في ورقة جديدة */
+        page-break-before: always !important; /* ط¨ظٹط®ظ„ظٹ ظƒظ„ ط³ظٹظƒط´ظ† ظٹط¨ط¯ط£ ظپظٹ ظˆط±ظ‚ط© ط¬ط¯ظٹط¯ط© */
         break-before: page !important;
     }
 
-    /* 5. إظهار الصورة المخصصة للطباعة */
+    /* 5. ط¥ط¸ظ‡ط§ط± ط§ظ„طµظˆط±ط© ط§ظ„ظ…ط®طµطµط© ظ„ظ„ط·ط¨ط§ط¹ط© */
     .print-only-hero-image {
         display: block !important;
         position: absolute !important;
@@ -634,13 +706,13 @@ main{padding-top:96px}
         display: none !important;
     }
 
-    /* 6. إخفاء العناصر غير الضرورية */
+    /* 6. ط¥ط®ظپط§ط، ط§ظ„ط¹ظ†ط§طµط± ط؛ظٹط± ط§ظ„ط¶ط±ظˆط±ظٹط© */
     nav, .nav-menu, button, a[href="javascript:void(0);"], footer {
         display: none !important;
     }
 
     @page {
         size: A4;
-        margin: 0mm !important; /* هنصفر الهامش هنا عشان الكروم ما يلعبش في الحسبة */
+        margin: 0mm !important; /* ظ‡ظ†طµظپط± ط§ظ„ظ‡ط§ظ…ط´ ظ‡ظ†ط§ ط¹ط´ط§ظ† ط§ظ„ظƒط±ظˆظ… ظ…ط§ ظٹظ„ط¹ط¨ط´ ظپظٹ ط§ظ„ط­ط³ط¨ط© */
     }
 }

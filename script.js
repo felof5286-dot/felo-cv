@@ -48,16 +48,18 @@
   }
 
   // IntersectionObserver for active state
-  const sections = ['home', 'about', 'projects', 'contact']
+  const sections = ['home', 'about', 'skills', 'certifications', 'projects', 'contact']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
+
 
   if ('IntersectionObserver' in window && sections.length) {
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
+          // خليك على Section اللي بتمثّل "أول شيء" تحت الـ header قدر الإمكان
+          .sort((a, b) => (a.target.getBoundingClientRect().top ?? 0) - (b.target.getBoundingClientRect().top ?? 0));
 
         if (visible[0]?.target?.id) setActive(visible[0].target.id);
       },
