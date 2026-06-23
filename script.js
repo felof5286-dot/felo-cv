@@ -178,15 +178,7 @@ window.generateResumePDF = async function generateResumePDF() {
   } catch (error) {
     console.error('PDF Error:', error);
   }
-  // 1. عند تحميل الصفحة، نجيب العدد الحالي من السيرفر
-window.onload = function() {
-    fetch('https://api.countapi.xyz/get/felo-portfolio/likes')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('love-count').innerText = data.value;
-        })
-        .catch(error => console.log('Error:', error));
-};
+  // 1. عند تحميل الصفحة، نجيب العدد الحالي من السيرف
 
 
 };
