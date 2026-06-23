@@ -7,7 +7,6 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-
   // Smooth scrolling + active link sync (IntersectionObserver)
   const nav = $('.nav');
   const toggle = $('.nav__toggle');
@@ -52,13 +51,11 @@
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
-
   if ('IntersectionObserver' in window && sections.length) {
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          // خليك على Section اللي بتمثّل "أول شيء" تحت الـ header قدر الإمكان
           .sort((a, b) => (a.target.getBoundingClientRect().top ?? 0) - (b.target.getBoundingClientRect().top ?? 0));
 
         if (visible[0]?.target?.id) setActive(visible[0].target.id);
@@ -69,12 +66,11 @@
     sections.forEach((s) => obs.observe(s));
   }
 
-  // Contact form: submit via AJAX when Formspree is configured (no page navigation).
+  // Contact form: submit via AJAX when Formspree is configured
   const form = $('#contact-form');
   if (form) {
     const action = form.getAttribute('action') || '';
     const method = (form.getAttribute('method') || 'POST').toUpperCase();
-
     const isFormspree = typeof action === 'string' && action.startsWith('https://formspree.io/');
 
     const setToast = (text, ok = true) => {
@@ -87,7 +83,6 @@
         toast.style.fontWeight = '800';
         form.appendChild(toast);
       }
-
       toast.style.color = ok ? 'rgba(34,197,94,0.95)' : 'rgba(244,63,94,0.95)';
       toast.textContent = text;
     };
@@ -97,27 +92,23 @@
       const email = form.elements['email']?.value?.trim();
       const message = form.elements['message']?.value?.trim();
 
-      const okFields = Boolean(name && email && message);
-      if (!okFields) return; // let browser validation handle it
+      if (!(name && email && message)) return;
 
       if (!isFormspree) {
-        // Demo-only behavior when no Formspree configured
         e.preventDefault();
         setToast('Message ready to send — hook your backend anytime.', true);
         form.reset();
         return;
       }
 
-      // Formspree AJAX submission to avoid redirect
       e.preventDefault();
-
       const fd = new FormData(form);
 
       try {
         const res = await fetch(action, {
-          method: method === 'GET' ? 'GET' : 'POST',
+          method: method,
           headers: { 'Accept': 'application/json' },
-          body: method === 'GET' ? undefined : fd
+          body: fd
         });
 
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -130,58 +121,50 @@
       }
     });
   }
-window.generateResumePDF = async function generateResumePDF() {
-  console.log('PDF Generation Started');
 
-  const element = document.body;
+  // Global function for PDF Generation
+  window.generateResumePDF = async function generateResumePDF() {
+    console.log('PDF Generation Started');
+    const element = document.body;
 
-  const opt = {
-    margin: 0,
-    filename: 'Felo_Portfolio.pdf',
-    image: { type: 'png', quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      imageTimeout: 15000,
-      onclone: function (clonedDoc) {
-        // 1) Remove backdrop-filters and complex effects from cloned styles
-        const allElements = clonedDoc.querySelectorAll('*');
-        allElements.forEach((el) => {
-          const style = window.getComputedStyle(el);
+    const opt = {
+      margin: 0,
+      filename: 'Felo_Portfolio.pdf',
+      image: { type: 'png', quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        imageTimeout: 15000,
+        onclone: function (clonedDoc) {
+          const allElements = clonedDoc.querySelectorAll('*');
+          allElements.forEach((el) => {
+            const style = window.getComputedStyle(el);
+            if (style.backdropFilter && style.backdropFilter !== 'none') {
+              el.style.backdropFilter = 'none';
+              el.style.webkitBackdropFilter = 'none';
+            }
+            if (style.filter && style.filter !== 'none') {
+              el.style.filter = 'none';
+            }
+          });
 
-          if (style.backdropFilter && style.backdropFilter !== 'none') {
-            el.style.backdropFilter = 'none';
-            el.style.webkitBackdropFilter = 'none';
-          }
-
-          if (style.filter && style.filter !== 'none') {
-            el.style.filter = 'none';
-          }
-        });
-
-        // 2) Hide navigational components and floating download buttons
-        const toHide = clonedDoc.querySelectorAll(
-          'nav, button, footer, .nav-menu, a[href*="javascript"]'
-        );
-        toHide.forEach((el) => {
-          el.style.display = 'none';
-        });
+          const toHide = clonedDoc.querySelectorAll(
+            'nav, button, footer, .nav-menu, a[href*="javascript"]'
+          );
+          toHide.forEach((el) => {
+            el.style.display = 'none';
+          });
+        },
       },
-    },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+
+    try {
+      await html2pdf().set(opt).from(element).save();
+      console.log('PDF Generated Successfully!');
+    } catch (error) {
+      console.error('PDF Error:', error);
+    }
   };
-
-  try {
-    await html2pdf().set(opt).from(element).save();
-    console.log('PDF Generated Successfully!');
-  } catch (error) {
-    console.error('PDF Error:', error);
-  }
-  // 1. عند تحميل الصفحة، نجيب العدد الحالي من السيرف
-
-
-};
 })();
-
-
