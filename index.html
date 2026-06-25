@@ -21,7 +21,7 @@
     <nav class="nav" aria-label="Primary">
       <div class="nav__brand">
         <span class="brand__mark" aria-hidden="true">◆</span>
-        <span class="brand__name">felobater essam azzoz</span>
+        <span class="brand__name">felobater essam maher</span>
       </div>
 
       <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
@@ -184,16 +184,54 @@
         </header>
 
         <div class="skills" role="list" aria-label="Technical skills">
-          <span class="skill-badge" role="listitem">C++</span>
-          <span class="skill-badge" role="listitem">Data Structures</span>
-          <span class="skill-badge" role="listitem">Problem Solving</span>
-          <span class="skill-badge" role="listitem">Statistical Analysis</span>
-          <span class="skill-badge" role="listitem">JavaScript (ES6+)</span>
-          <span class="skill-badge" role="listitem">React.js</span>
-          <span class="skill-badge" role="listitem">CSS Architecture</span>
-          <span class="skill-badge" role="listitem">Responsive Design</span>
-          <span class="skill-badge" role="listitem">Performance Tuning</span>
-          <span class="skill-badge" role="listitem">Git & Collaboration</span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+            C
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-cuttlefish"></i></span>
+            C++
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-diagram-project"></i></span>
+            Data Structures
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></span>
+            Problem Solving
+          </span>
+           <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-html5"></i></span>
+            HTML
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-css3-alt"></i></span>
+            CSS 
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-mobile-screen-button"></i></span>
+            Responsive Design
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-js"></i></span>
+            JavaScript (ES6+)
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-react"></i></span>
+            React.js
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-gauge-high"></i></span>
+            Performance Tuning
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+            Statistical Analysis
+          </span>
+          <span class="skill-badge" role="listitem">
+            <span class="skill-badge__icon" aria-hidden="true"><i class="fa-brands fa-git-alt"></i></span>
+            Git & Collaboration
+          </span>
         </div>
       </div>
     </section>
@@ -205,65 +243,103 @@
           <span class="section__underline" aria-hidden="true"></span>
         </header>
 
-        <div class="certifications" aria-label="Certifications list">
-             <article class="cert-card">
-            <div class="cert-card__media" aria-hidden="true">
-              <img src="googel.png" alt="Coursera certificate 1" loading="lazy" />
-            </div>
-            <div class="cert-card__body">
-              <h3 class="cert-card__title">Google</h3>
-              <p class="cert-card__meta">Issued by Coursera•</p>
-              <p class="cert-card__desc">Google AI</p>
-              <a class="cert-card__download btn btn--ghost" href="googel.png" download>
-                <span>Download</span>
-                <span class="btn__icon" aria-hidden="true">⬇</span>
-              </a>
-            </div>
-          </article>
-          <article class="cert-card">
-            <div class="cert-card__media" aria-hidden="true">
-              <img src="coursera3.png" alt="Coursera certificate 1" loading="lazy" />
-            </div>
-            <div class="cert-card__body">
-              <h3 class="cert-card__title">meta Certificate</h3>
-              <p class="cert-card__meta">Issued by Coursera•</p>
-              <p class="cert-card__desc">Front-End development.</p>
-              <a class="cert-card__download btn btn--ghost" href="coursera3.png" download>
-                <span>Download</span>
-                <span class="btn__icon" aria-hidden="true">⬇</span>
-              </a>
-            </div>
-          </article>
+        <div class="cert-carousel" aria-label="Certifications carousel">
+          <button class="cert-carousel__btn cert-carousel__btn--prev" type="button" aria-label="Previous certification" data-cert-prev>
+            ‹
+          </button>
 
-          <article class="cert-card">
-            <div class="cert-card__media" aria-hidden="true">
-              <img src="coursera4.png" alt="Coursera certificate 2" loading="lazy" />
-            </div>
-            <div class="cert-card__body">
-              <h3 class="cert-card__title">US Santa Cruz Certificate</h3>
-              <p class="cert-card__meta">Issued by Coursera•</p>
-              <p class="cert-card__desc">Programming in C language.</p>
-              <a class="cert-card__download btn btn--ghost" href="coursera4.png" download>
-                <span>Download</span>
-                <span class="btn__icon" aria-hidden="true">⬇</span>
-              </a>
-            </div>
-          </article>
+          <div class="cert-carousel__viewport" data-cert-viewport>
+            <div class="cert-carousel__track" data-cert-track>
+              <div class="cert-carousel__slide" data-cert-slide>
+                <article class="cert-card">
+                  <div class="cert-card__media" aria-hidden="true">
+                    <img src="googel.png" alt="Coursera certificate 1" loading="lazy" />
+                  </div>
+                  <div class="cert-card__body">
+                    <h3 class="cert-card__title">Google</h3>
+                    <p class="cert-card__meta">Issued by Coursera•</p>
+                    <p class="cert-card__desc">Google AI</p>
+                    <a class="cert-card__download btn btn--ghost" href="googel.png" download>
+                      <span>Download</span>
+                      <span class="btn__icon" aria-hidden="true">⬇</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
 
-          <article class="cert-card">
-            <div class="cert-card__media" aria-hidden="true">
-              <img src="Coursera RUYXZRQ491AJ_1.jpeg" alt="Coursera certificate 3" loading="lazy" />
+              <div class="cert-carousel__slide" data-cert-slide>
+                <article class="cert-card">
+                  <div class="cert-card__media" aria-hidden="true">
+                    <img src="coursera3.png" alt="Coursera certificate 1" loading="lazy" />
+                  </div>
+                  <div class="cert-card__body">
+                    <h3 class="cert-card__title">Meta Certificate</h3>
+                    <p class="cert-card__meta">Issued by Coursera•</p>
+                    <p class="cert-card__desc">Front-End development.</p>
+                    <a class="cert-card__download btn btn--ghost" href="coursera3.png" download>
+                      <span>Download</span>
+                      <span class="btn__icon" aria-hidden="true">⬇</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
+
+              <div class="cert-carousel__slide" data-cert-slide>
+                <article class="cert-card">
+                  <div class="cert-card__media" aria-hidden="true">
+                    <img src="coursera4.png" alt="Coursera certificate 2" loading="lazy" />
+                  </div>
+                  <div class="cert-card__body">
+                    <h3 class="cert-card__title">US Santa Cruz Certificate</h3>
+                    <p class="cert-card__meta">Issued by Coursera•</p>
+                    <p class="cert-card__desc">Programming in C language.</p>
+                    <a class="cert-card__download btn btn--ghost" href="coursera4.png" download>
+                      <span>Download</span>
+                      <span class="btn__icon" aria-hidden="true">⬇</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
+
+              <div class="cert-carousel__slide" data-cert-slide>
+                <article class="cert-card">
+                  <div class="cert-card__media" aria-hidden="true">
+                    <img src="Coursera RUYXZRQ491AJ_1.jpeg" alt="Coursera certificate 3" loading="lazy" />
+                  </div>
+                  <div class="cert-card__body">
+                    <h3 class="cert-card__title">Microsoft Certificate</h3>
+                    <p class="cert-card__meta">Issued by Coursera•</p>
+                    <p class="cert-card__desc">C++ Programming Fundamentals.</p>
+                    <a class="cert-card__download btn btn--ghost" href="Coursera IEH7MK7JZNTE_1.jpeg" download>
+                      <span>Download</span>
+                      <span class="btn__icon" aria-hidden="true">⬇</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
+              
+              <div class="cert-carousel__slide" data-cert-slide>
+                <article class="cert-card">
+                  <div class="cert-card__media" aria-hidden="true">
+                    <img src="data.png" alt="Coursera certificate 1" loading="lazy" />
+                  </div>
+                  <div class="cert-card__body">
+                    <h3 class="cert-card__title">Googel</h3>
+                    <p class="cert-card__meta">Issued by Coursera•</p>
+                    <p class="cert-card__desc">AI for Data Analysis.</p>
+                    <a class="cert-card__download btn btn--ghost" href="data.png" download>
+                      <span>Download</span>
+                      <span class="btn__icon" aria-hidden="true">⬇</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
             </div>
-            <div class="cert-card__body">
-              <h3 class="cert-card__title">Microsoft Certificate</h3>
-              <p class="cert-card__meta">Issued by Coursera•</p>
-              <p class="cert-card__desc">C++ Programming Fundamentals.</p>
-              <a class="cert-card__download btn btn--ghost" href="Coursera IEH7MK7JZNTE_1.jpeg" download>
-                <span>Download</span>
-                <span class="btn__icon" aria-hidden="true">⬇</span>
-              </a>
-            </div>
-          </article>
+          </div>
+
+          <button class="cert-carousel__btn cert-carousel__btn--next" type="button" aria-label="Next certification" data-cert-next>
+            ›
+          </button>
         </div>
       </div>
     </section>

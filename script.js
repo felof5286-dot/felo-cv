@@ -66,6 +66,83 @@
     sections.forEach((s) => obs.observe(s));
   }
 
+  // Certifications carousel (no React): slide with Prev/Next + swipe
+  const car = document.querySelector('.cert-carousel');
+  if (car) {
+    const track = car.querySelector('[data-cert-track]');
+    const slides = car.querySelectorAll('[data-cert-slide]');
+    const prevBtn = car.querySelector('[data-cert-prev]');
+    const nextBtn = car.querySelector('[data-cert-next]');
+
+    if (track && slides.length) {
+      let index = 0;
+      const clamp = (n) => Math.max(0, Math.min(n, slides.length - 1));
+
+      const update = () => {
+        index = clamp(index);
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+      };
+
+      const go = (dir) => {
+        index = index + dir;
+        update();
+      };
+
+      prevBtn?.addEventListener('click', () => go(-1));
+      nextBtn?.addEventListener('click', () => go(1));
+
+      // Touch swipe
+      let startX = 0;
+      let deltaX = 0;
+      let isDragging = false;
+
+      car.addEventListener('touchstart', (e) => {
+        if (!e.touches || e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        deltaX = 0;
+        isDragging = true;
+      }, { passive: true });
+
+      car.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        deltaX = e.touches[0].clientX - startX;
+      }, { passive: true });
+
+      car.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        if (Math.abs(deltaX) > 40) go(deltaX < 0 ? 1 : -1);
+        deltaX = 0;
+      });
+
+      // Basic mouse drag
+      let mouseDown = false;
+      let mouseStartX = 0;
+      let mouseDeltaX = 0;
+
+      car.addEventListener('mousedown', (e) => {
+        mouseDown = true;
+        mouseStartX = e.clientX;
+        mouseDeltaX = 0;
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!mouseDown) return;
+        mouseDeltaX = e.clientX - mouseStartX;
+      });
+      window.addEventListener('mouseup', () => {
+        if (!mouseDown) return;
+        mouseDown = false;
+        if (Math.abs(mouseDeltaX) > 60) go(mouseDeltaX < 0 ? 1 : -1);
+      });
+
+      update();
+    }
+  }
+
+
   // Contact form: submit via AJAX when Formspree is configured
   const form = $('#contact-form');
   if (form) {
